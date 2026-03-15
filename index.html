@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanfstecklinge Shop - Premium US-Genetik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        header {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #4CAF50;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            color: #4CAF50;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #ccc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .intro h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        .intro p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ddd;
+        }
+        
+        .strains {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .strain-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #4CAF50;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .strain-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+        
+        .strain-card h3 {
+            color: #4CAF50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .strain-type {
+            display: inline-block;
+            background: #4CAF50;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .strain-card p {
+            color: #ccc;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-size: 1.8em;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        .order-section {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 50px auto;
+            max-width: 800px;
+        }
+        
+        .order-section h2 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 1em;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .strain-select {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .strain-checkbox {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .strain-checkbox:hover {
+            background: rgba(76, 175, 80, 0.3);
+        }
+        
+        .strain-checkbox input {
+            margin-right: 10px;
+            width: auto;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .contact {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .contact h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            color: #ddd;
+        }
+        
+        .contact-item strong {
+            color: #4CAF50;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0,0,0,0.5);
+            margin-top: 50px;
+            color: #888;
+        }
+        
+        .disclaimer {
+            background: rgba(255,193,7,0.2);
+            border: 1px solid #FFC107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            text-align: center;
+            color: #FFC107;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #FF5722;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-left: 5px;
+        }
+        
+        .success-message {
+            display: none;
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌿 Hanfstecklinge Shop</h1>
+        <p>Premium US-Genetik - Gesunde Stecklinge für deinen Anbau</p>
+    </header>
+    
+    <div class="container">
+        <section class="intro">
+            <h2>Willkommen bei uns!</h2>
+            <p>Wir bieten dir handverlesene, gesunde Hanfstecklinge aus den besten US-Genetiken. 
+            Alle Stecklinge werden mit Liebe und Sorgfalt aufgezogen und sind bereit für dein Grow-Projekt. 
+            Diskreter Versand nach Deutschland, Österreich und EU-weit.</p>
+        </section>
+        
+        <div class="disclaimer">
+            ⚠️ Hinweis: Der Anbau von Hanf ist in vielen Ländern nur mit entsprechender Lizenz erlaubt. 
+            Bitte informiere dich über die geltenden Gesetze in deinem Land.
+        </div>
+        
+        <section class="shipping-info" style="background: rgba(76, 175, 80, 0.1); border: 2px solid #4CAF50; border-radius: 15px; padding: 30px; margin: 30px auto; max-width: 800px; text-align: center;">
+            <h2 style="color: #4CAF50; margin-bottom: 20px;">📦 Versandbedingungen</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div style="color: #ddd;">
+                    <strong style="color: #FFD700; display: block; font-size: 1.3em; margin-bottom: 10px;">Mindestbestellmenge</strong>
+                    3 Stecklinge
+                </div>
+                <div style="color: #ddd;">
+                    <strong style="color: #FFD700; display: block; font-size: 1.3em; margin-bottom: 10px;">Versand</strong>
+                    Diskret mit Tracking
+                </div>
+                <div style="color: #ddd;">
+                    <strong style="color: #FFD700; display: block; font-size: 1.3em; margin-bottom: 10px;">Liefergebiet</strong>
+                    Deutschland, Österreich, EU
+                </div>
+            </div>
+        </section>
+        
+        <section class="strains">
+            <!-- Indica Sorten -->
+            <div class="strain-card">
+                <h3>OG Kush</h3>
+                <span class="strain-type">Indica-dominant</span>
+                <p>Der klassische OG Kush aus Kalifornien. Starkes Aroma mit erdigen und zitronigen Noten. 
+                Sehr robust und pflegeleicht. Blütezeit: 8-9 Wochen.</p>
+                <div class="price">15 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Girl Scout Cookies <span class="badge">Bestseller</span></h3>
+                <span class="strain-type">Indica-dominant</span>
+                <p>Süßer, erdiger Geschmack mit Minznoten. 
+                Premium US-Genetik mit hohem THC-Gehalt. Kompakte, harzige Buds. Blütezeit: 9-10 Wochen.</p>
+                <div class="price">20 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Granddaddy Purple</h3>
+                <span class="strain-type">Indica</span>
+                <p>Berühmt für ihre tiefviolette Farbe und süßen Beerengeschmack. 
+                Sehr entspannende Wirkung. Hoher Ertrag. Blütezeit: 8-9 Wochen.</p>
+                <div class="price">18 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Northern Lights</h3>
+                <span class="strain-type">Indica</span>
+                <p>Klassische Indica, bekannt für ihre Robustheit und kurze Blütezeit. 
+                Erdiger Geschmack, sehr resistent. Ideal für Anfänger. Blütezeit: 7-8 Wochen.</p>
+                <div class="price">14 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Bubba Kush</h3>
+                <span class="strain-type">Indica</span>
+                <p>Schwere Indica mit Schokoladen- und Kaffeearomen. 
+                Sehr entspannend, perfekt für den Abend. Kompakte Pflanze. Blütezeit: 8-9 Wochen.</p>
+                <div class="price">16 €</div>
+            </div>
+            
+            <!-- Sativa Sorten -->
+            <div class="strain-card">
+                <h3>Blue Dream</h3>
+                <span class="strain-type">Sativa-dominant</span>
+                <p>Beliebte Sativa mit süßem Beerengeschmack. 
+                Ausgewogene Wirkung, perfekt für den Tag. Sehr resistent gegen Schimmel. Blütezeit: 9-10 Wochen.</p>
+                <div class="price">16 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Sour Diesel <span class="badge">Bestseller</span></h3>
+                <span class="strain-type">Sativa-dominant</span>
+                <p>Legendäre East-Coast-Sativa mit charakteristischem Diesel-Aroma. 
+                Energiegeladene Wirkung, ideal für kreative Projekte. Blütezeit: 10-11 Wochen.</p>
+                <div class="price">17 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Jack Herer</h3>
+                <span class="strain-type">Sativa-dominant</span>
+                <p>Namensgebende Sorte nach dem Cannabis-Aktivisten. 
+                Würziger, pfeffriger Geschmack. Ausgewogene, klare Wirkung. Blütezeit: 8-10 Wochen.</p>
+                <div class="price">17 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Green Crack</h3>
+                <span class="strain-type">Sativa</span>
+                <p>Intensive, energiegeladene Sativa mit süßem Mango-Aroma. 
+                Perfekt für produktive Tage. Schnell wachsend. Blütezeit: 7-9 Wochen.</p>
+                <div class="price">15 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Strawberry Cough</h3>
+                <span class="strain-type">Sativa</span>
+                <p>Süße Erdbeeraromen mit sanfter, aufmunternder Wirkung. 
+                Sehr beliebt bei Social Smokers. Blütezeit: 9-10 Wochen.</p>
+                <div class="price">16 €</div>
+            </div>
+            
+            <!-- Hybrid Sorten -->
+            <div class="strain-card">
+                <h3>Gorilla Glue #4 <span class="badge">Top</span></h3>
+                <span class="strain-type">Hybrid</span>
+                <p>Bekannt für ihre extrem harzigen Buds und starke Wirkung. 
+                Intensiver Duft nach Kiefer und Schokolade. Hoher Ertrag. Blütezeit: 8-9 Wochen.</p>
+                <div class="price">18 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Wedding Cake</h3>
+                <span class="strain-type">Hybrid</span>
+                <p>Süßer, vanilliger Geschmack wie der Name vermuten lässt. 
+                Sehr potent, ausgewogene Wirkung. Beliebt bei Connoisseuren. Blütezeit: 8-9 Wochen.</p>
+                <div class="price">19 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Runtz</h3>
+                <span class="strain-type">Hybrid</span>
+                <p>Trendige Sorte mit süßem, fruchtigem Aroma wie die Süßigkeit. 
+                Sehr harzig und potent. Kalifornische Top-Genetik. Blütezeit: 8-9 Wochen.</p>
+                <div class="price">21 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Zkittlez</h3>
+                <span class="strain-type">Indica-Hybrid</span>
+                <p>Intensiver, süßer Fruchtaroma wie bunte Süßigkeiten. 
+                Entspannend ohne müde zu machen. Cup-Gewinner. Blütezeit: 8-9 Wochen.</p>
+                <div class="price">18 €</div>
+            </div>
+            
+            <div class="strain-card">
+                <h3>Gelato</h3>
+                <span class="strain-type">Hybrid</span>
+                <p>Cremiger, süßer Geschmack mit Beerernoten. 
+                Ausgewogene Wirkung zwischen körperlich und mental. Sehr beliebt. Blütezeit: 8-9 Wochen.</p>
+                <div class="price">19 €</div>
+            </div>
+        </section>
+        
+        <section class="order-section">
+            <h2>🛒 Bestellformular</h2>
+            <form id="orderForm" action="https://formsubmit.co/muttihauweg@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Neue Hanfstecklinge Bestellung!">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://deine-domain.de/danke.html">
+                
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Dein vollständiger Name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-Mail *</label>
+                    <input type="email" id="email" name="email" required placeholder="deine@email.de">
+                </div>
+                
+                <div class="form-group">
+                    <label>Sorten auswählen (Mindestens 3 Stecklinge) *</label>
+                    <div class="strain-select">
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="OG Kush"> OG Kush (15€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Girl Scout Cookies"> Girl Scout Cookies (20€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Granddaddy Purple"> Granddaddy Purple (18€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Northern Lights"> Northern Lights (14€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Bubba Kush"> Bubba Kush (16€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Blue Dream"> Blue Dream (16€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Sour Diesel"> Sour Diesel (17€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Jack Herer"> Jack Herer (17€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Green Crack"> Green Crack (15€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Strawberry Cough"> Strawberry Cough (16€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Gorilla Glue #4"> Gorilla Glue #4 (18€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Wedding Cake"> Wedding Cake (19€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Runtz"> Runtz (21€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Zkittlez"> Zkittlez (18€)
+                        </label>
+                        <label class="strain-checkbox">
+                            <input type="checkbox" name="sorten[]" value="Gelato"> Gelato (19€)
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="anzahl">Gesamtanzahl Stecklinge *</label>
+                    <input type="number" id="anzahl" name="anzahl" min="3" required placeholder="Mindestens 3">
+                </div>
+                
+                <div class="form-group">
+                    <label for="adresse">Lieferadresse *</label>
+                    <textarea id="adresse" name="adresse" required placeholder="Straße, Hausnummer&#10;PLZ Ort&#10;Land"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nachricht">Zusätzliche Nachricht (optional)</label>
+                    <textarea id="nachricht" name="nachricht" placeholder="Fragen oder besondere Wünsche..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">✉️ Bestellung absenden</button>
+            </form>
+            
+            <div id="successMessage" class="success-message">
+                ✅ Deine Bestellung wurde erfolgreich gesendet! Wir melden uns bei dir.
+            </div>
+        </section>
+        
+        
+        <section class="contact">
+            <h2>📞 Kontakt</h2>
+            <p>Bei Fragen erreichst du uns auch direkt:</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Email</strong>
+                    muttihauweg@gmail.com
+                </div>
+                <div class="contact-item">
+                    <strong>Telegram</strong>
+                    @hanfstecklinge
+                </div>
+                <div class="contact-item">
+                    <strong>Versand</strong>
+                    Diskret & Tracking
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Hanfstecklinge Shop | Alle Rechte vorbehalten</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">
+            Diese Seite dient ausschließlich zu Informationszwecken. 
+            Bitte beachte die gesetzlichen Bestimmungen in deinem Land.
+        </p>
+    </footer>
+    
+    
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            const checkboxes = document.querySelectorAll('input[name=\"sorten[]\"]:checked');
+            const anzahl = document.getElementById('anzahl').value;
+            
+            if (checkboxes.length === 0) {
+                e.preventDefault();
+                alert('Bitte wähle mindestens eine Sorte aus!');
+                return;
+            }
+            
+            if (anzahl < 3) {
+                e.preventDefault();
+                alert('Mindestbestellmenge sind 3 Stecklinge!');
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
