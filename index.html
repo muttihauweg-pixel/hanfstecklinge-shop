@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanfstecklinge Shop - 18 Premium Stecklinge</title>
+    <title>Hanfstecklinge Shop - Premium Stecklinge</title>
     <style>
         * {
             margin: 0;
@@ -43,19 +43,13 @@
         }
         
         .stock-info {
-            background: #ff4444;
+            background: #4a9c5d;
             color: white;
             padding: 10px 30px;
             border-radius: 50px;
             display: inline-block;
             margin-top: 15px;
             font-weight: bold;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
         
         /* Warenkorb-Icon */
@@ -204,7 +198,7 @@
         /* Produkte */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 30px;
         }
@@ -223,21 +217,15 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
-        .product-card.sold-out {
-            opacity: 0.6;
-            border-color: #666;
-        }
-        
         .product-image {
             width: 100%;
-            height: 200px;
+            height: 220px;
             background: linear-gradient(135deg, #2d5a3d 0%, #1a472a 100%);
             border-radius: 10px;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4em;
             overflow: hidden;
             position: relative;
         }
@@ -248,35 +236,73 @@
             object-fit: cover;
         }
         
-        .product-number {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #4a9c5d;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
+        .product-image-placeholder {
+            font-size: 4em;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
         }
         
         .product-name {
-            font-size: 1.3em;
+            font-size: 1.4em;
             margin-bottom: 8px;
             color: #90d4a0;
         }
         
-        .product-strain {
+        .product-thc {
+            font-size: 1em;
+            color: #ffd700;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .product-desc {
             font-size: 0.9em;
             color: #ccc;
             margin-bottom: 10px;
         }
         
         .product-price {
-            font-size: 1.6em;
+            font-size: 1.8em;
             color: #90d4a0;
-            margin-bottom: 15px;
+            margin: 15px 0;
             font-weight: bold;
+        }
+        
+        .price-per-piece {
+            font-size: 0.8em;
+            color: #aaa;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        
+        .qty-btn {
+            background: #4a9c5d;
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3em;
+            transition: background 0.3s;
+        }
+        
+        .qty-btn:hover {
+            background: #5ab76e;
+        }
+        
+        .qty-display {
+            font-size: 1.3em;
+            font-weight: bold;
+            min-width: 40px;
         }
         
         .add-to-cart {
@@ -285,28 +311,15 @@
             background: #4a9c5d;
             border: none;
             color: white;
-            font-size: 1em;
+            font-size: 1.1em;
             border-radius: 10px;
             cursor: pointer;
             transition: background 0.3s;
+            margin-top: 10px;
         }
         
         .add-to-cart:hover {
             background: #5ab76e;
-        }
-        
-        .add-to-cart:disabled {
-            background: #666;
-            cursor: not-allowed;
-        }
-        
-        .sold-out-badge {
-            background: #ff4444;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
         }
         
         footer {
@@ -328,7 +341,7 @@
             }
             
             .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -360,11 +373,11 @@
         <header>
             <h1>🌿 Hanfstecklinge Shop</h1>
             <p class="subtitle">Premium Stecklinge - Direkt vom Züchter</p>
-            <div class="stock-info">🔥 Nur noch 18 Stecklinge verfügbar!</div>
+            <div class="stock-info">✅ Alle Sorten verfügbar</div>
         </header>
 
         <div class="products-grid" id="productsGrid">
-            <!-- Stecklinge werden per JavaScript generiert -->
+            <!-- Produkte werden per JavaScript generiert -->
         </div>
 
         <footer>
@@ -378,70 +391,127 @@
     </div>
 
     <script>
-        // 18 Stecklinge mit verschiedenen Sorten
-        const seedlings = [
-            { id: 1, strain: "Gorilla Glue #4", thc: "25-30%", price: 15, emoji: "🦍", color: "#4a6741" },
-            { id: 2, strain: "Blue Dream", thc: "18-24%", price: 12, emoji: "💙", color: "#4169E1" },
-            { id: 3, strain: "OG Kush", thc: "20-26%", price: 14, emoji: "🌲", color: "#228B22" },
-            { id: 4, strain: "Girl Scout Cookies", thc: "22-28%", price: 16, emoji: "🍪", color: "#8B4513" },
-            { id: 5, strain: "Wedding Cake", thc: "24-30%", price: 17, emoji: "🎂", color: "#FFB6C1" },
-            { id: 6, strain: "Zkittlez", thc: "19-23%", price: 13, emoji: "🌈", color: "#9370DB" },
-            { id: 7, strain: "Gorilla Glue #4", thc: "25-30%", price: 15, emoji: "🦍", color: "#4a6741" },
-            { id: 8, strain: "Blue Dream", thc: "18-24%", price: 12, emoji: "💙", color: "#4169E1" },
-            { id: 9, strain: "OG Kush", thc: "20-26%", price: 14, emoji: "🌲", color: "#228B22" },
-            { id: 10, strain: "Girl Scout Cookies", thc: "22-28%", price: 16, emoji: "🍪", color: "#8B4513" },
-            { id: 11, strain: "Wedding Cake", thc: "24-30%", price: 17, emoji: "🎂", color: "#FFB6C1" },
-            { id: 12, strain: "Zkittlez", thc: "19-23%", price: 13, emoji: "🌈", color: "#9370DB" },
-            { id: 13, strain: "Gorilla Glue #4", thc: "25-30%", price: 15, emoji: "🦍", color: "#4a6741" },
-            { id: 14, strain: "Blue Dream", thc: "18-24%", price: 12, emoji: "💙", color: "#4169E1" },
-            { id: 15, strain: "OG Kush", thc: "20-26%", price: 14, emoji: "🌲", color: "#228B22" },
-            { id: 16, strain: "Girl Scout Cookies", thc: "22-28%", price: 16, emoji: "🍪", color: "#8B4513" },
-            { id: 17, strain: "Wedding Cake", thc: "24-30%", price: 17, emoji: "🎂", color: "#FFB6C1" },
-            { id: 18, strain: "Zkittlez", thc: "19-23%", price: 13, emoji: "🌈", color: "#9370DB" }
+        // Sorten mit Bildpfaden (Platzhalter für jetzt)
+        const strains = [
+            { 
+                id: "gg4", 
+                name: "Gorilla Glue #4", 
+                thc: "25-30%", 
+                price: 15, 
+                desc: "Hybrid - Stark klebrig, euphorisch",
+                image: "images/gorilla-glue-4.jpg",
+                emoji: "🦍"
+            },
+            { 
+                id: "bd", 
+                name: "Blue Dream", 
+                thc: "18-24%", 
+                price: 12, 
+                desc: "Sativa-dominant - Beruhigend, kreativ",
+                image: "images/blue-dream.jpg",
+                emoji: "💙"
+            },
+            { 
+                id: "ogk", 
+                name: "OG Kush", 
+                thc: "20-26%", 
+                price: 14, 
+                desc: "Indica-dominant - Klassisch, entspannend",
+                image: "images/og-kush.jpg",
+                emoji: "🌲"
+            },
+            { 
+                id: "gsc", 
+                name: "Girl Scout Cookies", 
+                thc: "22-28%", 
+                price: 16, 
+                desc: "Hybrid - Süß, euphorisch",
+                image: "images/girl-scout-cookies.jpg",
+                emoji: "🍪"
+            },
+            { 
+                id: "wc", 
+                name: "Wedding Cake", 
+                thc: "24-30%", 
+                price: 17, 
+                desc: "Indica-dominant - Stark, entspannend",
+                image: "images/wedding-cake.jpg",
+                emoji: "🎂"
+            },
+            { 
+                id: "zk", 
+                name: "Zkittlez", 
+                thc: "19-23%", 
+                price: 13, 
+                desc: "Indica-dominant - Fruchtig, entspannend",
+                image: "images/zkittlez.jpg",
+                emoji: "🌈"
+            }
         ];
 
         // Warenkorb-Daten
         let cart = {};
+        // Mengenauswahl pro Sorte
+        let quantities = {};
 
         // Produkte rendern
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
-            grid.innerHTML = seedlings.map(seedling => `
-                <div class="product-card" id="card-${seedling.id}">
-                    <div class="product-image" style="background: linear-gradient(135deg, ${seedling.color}44 0%, ${seedling.color}22 100%);">
-                        <span class="product-number">#${seedling.id}</span>
-                        <div style="font-size: 5em; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">${seedling.emoji}</div>
+            grid.innerHTML = strains.map(strain => {
+                quantities[strain.id] = quantities[strain.id] || 1;
+                return `
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-image-placeholder">${strain.emoji}</div>
                     </div>
-                    <h2 class="product-name">Steckling #${seedling.id}</h2>
-                    <p class="product-strain">${seedling.strain} • THC: ${seedling.thc}</p>
-                    <div class="product-price">${seedling.price.toFixed(2)} €</div>
-                    <button class="add-to-cart" id="btn-${seedling.id}" onclick="addToCart(${seedling.id})">
+                    <h2 class="product-name">${strain.name}</h2>
+                    <div class="product-thc">THC: ${strain.thc}</div>
+                    <p class="product-desc">${strain.desc}</p>
+                    <div class="product-price">
+                        ${strain.price.toFixed(2)} €
+                        <div class="price-per-piece">pro Steckling</div>
+                    </div>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" onclick="changeQty('${strain.id}', -1)">−</button>
+                        <span class="qty-display" id="qty-${strain.id}">1</span>
+                        <button class="qty-btn" onclick="changeQty('${strain.id}', 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('${strain.id}')">
                         In den Warenkorb
                     </button>
                 </div>
-            `).join('');
+            `}).join('');
+        }
+
+        // Menge ändern
+        function changeQty(strainId, delta) {
+            quantities[strainId] = Math.max(1, (quantities[strainId] || 1) + delta);
+            document.getElementById(`qty-${strainId}`).textContent = quantities[strainId];
         }
 
         // Zum Warenkorb hinzufügen
-        function addToCart(id) {
-            const seedling = seedlings.find(s => s.id === id);
+        function addToCart(strainId) {
+            const strain = strains.find(s => s.id === strainId);
+            const qty = quantities[strainId] || 1;
             
-            if (cart[id]) {
-                alert('Dieser Steckling ist bereits im Warenkorb!');
-                return;
+            if (cart[strainId]) {
+                cart[strainId].qty += qty;
+            } else {
+                cart[strainId] = { ...strain, qty: qty };
             }
             
-            cart[id] = { ...seedling, qty: 1 };
-            
-            // Button aktualisieren
-            const btn = document.getElementById(`btn-${id}`);
-            btn.textContent = '✓ Im Warenkorb';
-            btn.disabled = true;
-            
-            // Karte als verkauft markieren
-            document.getElementById(`card-${id}`).classList.add('sold-out');
-            
+            // Animation oder Feedback
             updateCart();
+            
+            // Kurze Bestätigung
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = `✓ ${qty}x hinzugefügt!`;
+            btn.style.background = '#5ab76e';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+            }, 1500);
         }
 
         // Warenkorb aktualisieren
@@ -463,10 +533,15 @@
                 html += `
                     <div class="cart-item">
                         <div class="cart-item-info">
-                            <div class="cart-item-name">Steckling #${item.id} - ${item.strain}</div>
+                            <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-price">${item.price.toFixed(2)} € × ${item.qty} = ${itemTotal.toFixed(2)} €</div>
                         </div>
-                        <button class="remove-btn" onclick="removeItem(${id})">🗑️</button>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateCartQty('${id}', -1)">−</button>
+                            <span>${item.qty}</span>
+                            <button class="quantity-btn" onclick="updateCartQty('${id}', 1)">+</button>
+                            <button class="remove-btn" onclick="removeItem('${id}')">🗑️</button>
+                        </div>
                     </div>
                 `;
             }
@@ -480,18 +555,17 @@
             cartTotal.textContent = total.toFixed(2).replace('.', ',') + ' €';
         }
 
+        // Menge im Warenkorb ändern
+        function updateCartQty(strainId, delta) {
+            if (cart[strainId]) {
+                cart[strainId].qty = Math.max(1, cart[strainId].qty + delta);
+                updateCart();
+            }
+        }
+
         // Item entfernen
-        function removeItem(id) {
-            delete cart[id];
-            
-            // Button zurücksetzen
-            const btn = document.getElementById(`btn-${id}`);
-            btn.textContent = 'In den Warenkorb';
-            btn.disabled = false;
-            
-            // Karte zurücksetzen
-            document.getElementById(`card-${id}`).classList.remove('sold-out');
-            
+        function removeItem(strainId) {
+            delete cart[strainId];
             updateCart();
         }
 
@@ -513,11 +587,11 @@
             
             for (let id in cart) {
                 const item = cart[id];
-                message += `Steckling #${item.id}: ${item.strain} - ${item.price.toFixed(2)} €\n`;
-                total += item.price;
+                message += `${item.name}: ${item.qty} Stück × ${item.price.toFixed(2)} € = ${(item.price * item.qty).toFixed(2)} €\n`;
+                total += item.price * item.qty;
             }
             
-            message += `\nGesamt: ${total.toFixed(2)} €`;
+            message += `\nGesamtsumme: ${total.toFixed(2)} €`;
             
             // WhatsApp-Link erstellen
             const whatsappUrl = `https://wa.me/49123456789?text=${encodeURIComponent(message)}`;
