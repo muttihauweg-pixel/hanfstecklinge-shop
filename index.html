@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanfstecklinge Shop - Premium US-Genetik</title>
+    <title>Hanfstecklinge Shop - 18 Premium Stecklinge</title>
     <style>
         * {
             margin: 0;
@@ -13,13 +13,13 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+            background: linear-gradient(135deg, #1a472a 0%, #0d3320 100%);
             min-height: 100vh;
             color: #fff;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -40,6 +40,22 @@
         .subtitle {
             font-size: 1.2em;
             color: #90d4a0;
+        }
+        
+        .stock-info {
+            background: #ff4444;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
         /* Warenkorb-Icon */
@@ -188,17 +204,18 @@
         /* Produkte */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-top: 30px;
         }
         
         .product-card {
             background: rgba(255,255,255,0.1);
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             border: 2px solid #4a9c5d;
             transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
         }
         
         .product-card:hover {
@@ -206,48 +223,69 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
-        .product-name {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #90d4a0;
+        .product-card.sold-out {
+            opacity: 0.6;
+            border-color: #666;
         }
         
-        .product-desc {
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a472a 100%);
+            border-radius: 10px;
             margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .product-features {
-            list-style: none;
-            margin-bottom: 15px;
-        }
-        
-        .product-features li {
-            padding: 5px 0;
-            padding-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            overflow: hidden;
             position: relative;
         }
         
-        .product-features li:before {
-            content: "✓";
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-number {
             position: absolute;
-            left: 0;
+            top: 10px;
+            left: 10px;
+            background: #4a9c5d;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .product-name {
+            font-size: 1.3em;
+            margin-bottom: 8px;
             color: #90d4a0;
         }
         
+        .product-strain {
+            font-size: 0.9em;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+        
         .product-price {
-            font-size: 1.8em;
+            font-size: 1.6em;
             color: #90d4a0;
             margin-bottom: 15px;
+            font-weight: bold;
         }
         
         .add-to-cart {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             background: #4a9c5d;
             border: none;
             color: white;
-            font-size: 1.1em;
+            font-size: 1em;
             border-radius: 10px;
             cursor: pointer;
             transition: background 0.3s;
@@ -257,29 +295,18 @@
             background: #5ab76e;
         }
         
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
+        .add-to-cart:disabled {
+            background: #666;
+            cursor: not-allowed;
         }
         
-        .qty-btn {
-            background: #4a9c5d;
-            border: none;
+        .sold-out-badge {
+            background: #ff4444;
             color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5em;
-        }
-        
-        .qty-display {
-            font-size: 1.5em;
-            min-width: 50px;
-            text-align: center;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
         }
         
         footer {
@@ -301,7 +328,7 @@
             }
             
             .products-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
         }
     </style>
@@ -332,123 +359,12 @@
     <div class="container">
         <header>
             <h1>🌿 Hanfstecklinge Shop</h1>
-            <p class="subtitle">Premium US-Genetik - Direkt aus Kalifornien</p>
+            <p class="subtitle">Premium Stecklinge - Direkt vom Züchter</p>
+            <div class="stock-info">🔥 Nur noch 18 Stecklinge verfügbar!</div>
         </header>
 
-        <div class="products-grid">
-            <!-- Gorilla Glue #4 -->
-            <div class="product-card">
-                <h2 class="product-name">🦍 Gorilla Glue #4</h2>
-                <p class="product-desc">Die legendäre US-Sorte mit extrem hohem THC-Gehalt und klebrigen Harzproduktion.</p>
-                <ul class="product-features">
-                    <li>THC: 25-30%</li>
-                    <li>Blütezeit: 8-9 Wochen</li>
-                    <li>Ertrag: Hoch</li>
-                    <li>Wirkung: Stark entspannend</li>
-                </ul>
-                <div class="product-price">15,00 € / Steckling</div>
-                <div class="quantity-selector">
-                    <button class="qty-btn" onclick="changeQty('gg4', -1)">−</button>
-                    <span class="qty-display" id="qty-gg4">1</span>
-                    <button class="qty-btn" onclick="changeQty('gg4', 1)">+</button>
-                </div>
-                <button class="add-to-cart" onclick="addToCart('gg4', 'Gorilla Glue #4', 15)">In den Warenkorb</button>
-            </div>
-
-            <!-- Blue Dream -->
-            <div class="product-card">
-                <h2 class="product-name">💙 Blue Dream</h2>
-                <p class="product-desc">Beliebte Westküsten-Sorte mit süßem Beerengeschmack und ausgewogener Wirkung.</p>
-                <ul class="product-features">
-                    <li>THC: 18-24%</li>
-                    <li>Blütezeit: 9-10 Wochen</li>
-                    <li>Ertrag: Sehr hoch</li>
-                    <li>Wirkung: Kreativ & euphorisch</li>
-                </ul>
-                <div class="product-price">12,00 € / Steckling</div>
-                <div class="quantity-selector">
-                    <button class="qty-btn" onclick="changeQty('bd', -1)">−</button>
-                    <span class="qty-display" id="qty-bd">1</span>
-                    <button class="qty-btn" onclick="changeQty('bd', 1)">+</button>
-                </div>
-                <button class="add-to-cart" onclick="addToCart('bd', 'Blue Dream', 12)">In den Warenkorb</button>
-            </div>
-
-            <!-- OG Kush -->
-            <div class="product-card">
-                <h2 class="product-name">🌲 OG Kush</h2>
-                <p class="product-desc">Klassische Kalifornische Sorte mit erdigen Aromen und kräftiger Wirkung.</p>
-                <ul class="product-features">
-                    <li>THC: 20-26%</li>
-                    <li>Blütezeit: 8 Wochen</li>
-                    <li>Ertrag: Mittel-Hoch</li>
-                    <li>Wirkung: Stark & langanhaltend</li>
-                </ul>
-                <div class="product-price">14,00 € / Steckling</div>
-                <div class="quantity-selector">
-                    <button class="qty-btn" onclick="changeQty('ogk', -1)">−</button>
-                    <span class="qty-display" id="qty-ogk">1</span>
-                    <button class="qty-btn" onclick="changeQty('ogk', 1)">+</button>
-                </div>
-                <button class="add-to-cart" onclick="addToCart('ogk', 'OG Kush', 14)">In den Warenkorb</button>
-            </div>
-
-            <!-- Girl Scout Cookies -->
-            <div class="product-card">
-                <h2 class="product-name">🍪 Girl Scout Cookies</h2>
-                <p class="product-desc">Preisgekrönte Sorte mit süßem, erdigen Geschmack und hohem THC-Gehalt.</p>
-                <ul class="product-features">
-                    <li>THC: 22-28%</li>
-                    <li>Blütezeit: 9-10 Wochen</li>
-                    <li>Ertrag: Hoch</li>
-                    <li>Wirkung: Euphorisch & entspannend</li>
-                </ul>
-                <div class="product-price">16,00 € / Steckling</div>
-                <div class="quantity-selector">
-                    <button class="qty-btn" onclick="changeQty('gsc', -1)">−</button>
-                    <span class="qty-display" id="qty-gsc">1</span>
-                    <button class="qty-btn" onclick="changeQty('gsc', 1)">+</button>
-                </div>
-                <button class="add-to-cart" onclick="addToCart('gsc', 'Girl Scout Cookies', 16)">In den Warenkorb</button>
-            </div>
-
-            <!-- Wedding Cake -->
-            <div class="product-card">
-                <h2 class="product-name">🎂 Wedding Cake</h2>
-                <p class="product-desc">Potente Indica-dominante Sorte mit süßem, vanilleartigem Geschmack.</p>
-                <ul class="product-features">
-                    <li>THC: 24-30%</li>
-                    <li>Blütezeit: 8-9 Wochen</li>
-                    <li>Ertrag: Sehr hoch</li>
-                    <li>Wirkung: Tiefenentspannung</li>
-                </ul>
-                <div class="product-price">17,00 € / Steckling</div>
-                <div class="quantity-selector">
-                    <button class="qty-btn" onclick="changeQty('wc', -1)">−</button>
-                    <span class="qty-display" id="qty-wc">1</span>
-                    <button class="qty-btn" onclick="changeQty('wc', 1)">+</button>
-                </div>
-                <button class="add-to-cart" onclick="addToCart('wc', 'Wedding Cake', 17)">In den Warenkorb</button>
-            </div>
-
-            <!-- Zkittlez -->
-            <div class="product-card">
-                <h2 class="product-name">🌈 Zkittlez</h2>
-                <p class="product-desc">Fruchtige Sorte mit intensivem Süßigkeiten-Aroma und entspannender Wirkung.</p>
-                <ul class="product-features">
-                    <li>THC: 19-23%</li>
-                    <li>Blütezeit: 8 Wochen</li>
-                    <li>Ertrag: Hoch</li>
-                    <li>Wirkung: Glücklich & entspannt</li>
-                </ul>
-                <div class="product-price">13,00 € / Steckling</div>
-                <div class="quantity-selector">
-                    <button class="qty-btn" onclick="changeQty('zk', -1)">−</button>
-                    <span class="qty-display" id="qty-zk">1</span>
-                    <button class="qty-btn" onclick="changeQty('zk', 1)">+</button>
-                </div>
-                <button class="add-to-cart" onclick="addToCart('zk', 'Zkittlez', 13)">In den Warenkorb</button>
-            </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Stecklinge werden per JavaScript generiert -->
         </div>
 
         <footer>
@@ -462,41 +378,70 @@
     </div>
 
     <script>
+        // 18 Stecklinge mit verschiedenen Sorten
+        const seedlings = [
+            { id: 1, strain: "Gorilla Glue #4", thc: "25-30%", price: 15, emoji: "🦍", color: "#4a6741" },
+            { id: 2, strain: "Blue Dream", thc: "18-24%", price: 12, emoji: "💙", color: "#4169E1" },
+            { id: 3, strain: "OG Kush", thc: "20-26%", price: 14, emoji: "🌲", color: "#228B22" },
+            { id: 4, strain: "Girl Scout Cookies", thc: "22-28%", price: 16, emoji: "🍪", color: "#8B4513" },
+            { id: 5, strain: "Wedding Cake", thc: "24-30%", price: 17, emoji: "🎂", color: "#FFB6C1" },
+            { id: 6, strain: "Zkittlez", thc: "19-23%", price: 13, emoji: "🌈", color: "#9370DB" },
+            { id: 7, strain: "Gorilla Glue #4", thc: "25-30%", price: 15, emoji: "🦍", color: "#4a6741" },
+            { id: 8, strain: "Blue Dream", thc: "18-24%", price: 12, emoji: "💙", color: "#4169E1" },
+            { id: 9, strain: "OG Kush", thc: "20-26%", price: 14, emoji: "🌲", color: "#228B22" },
+            { id: 10, strain: "Girl Scout Cookies", thc: "22-28%", price: 16, emoji: "🍪", color: "#8B4513" },
+            { id: 11, strain: "Wedding Cake", thc: "24-30%", price: 17, emoji: "🎂", color: "#FFB6C1" },
+            { id: 12, strain: "Zkittlez", thc: "19-23%", price: 13, emoji: "🌈", color: "#9370DB" },
+            { id: 13, strain: "Gorilla Glue #4", thc: "25-30%", price: 15, emoji: "🦍", color: "#4a6741" },
+            { id: 14, strain: "Blue Dream", thc: "18-24%", price: 12, emoji: "💙", color: "#4169E1" },
+            { id: 15, strain: "OG Kush", thc: "20-26%", price: 14, emoji: "🌲", color: "#228B22" },
+            { id: 16, strain: "Girl Scout Cookies", thc: "22-28%", price: 16, emoji: "🍪", color: "#8B4513" },
+            { id: 17, strain: "Wedding Cake", thc: "24-30%", price: 17, emoji: "🎂", color: "#FFB6C1" },
+            { id: 18, strain: "Zkittlez", thc: "19-23%", price: 13, emoji: "🌈", color: "#9370DB" }
+        ];
+
         // Warenkorb-Daten
         let cart = {};
-        let quantities = {
-            'gg4': 1, 'bd': 1, 'ogk': 1, 
-            'gsc': 1, 'wc': 1, 'zk': 1
-        };
 
-        // Menge ändern
-        function changeQty(productId, change) {
-            quantities[productId] = Math.max(1, quantities[productId] + change);
-            document.getElementById('qty-' + productId).textContent = quantities[productId];
+        // Produkte rendern
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = seedlings.map(seedling => `
+                <div class="product-card" id="card-${seedling.id}">
+                    <div class="product-image" style="background: linear-gradient(135deg, ${seedling.color}44 0%, ${seedling.color}22 100%);">
+                        <span class="product-number">#${seedling.id}</span>
+                        <div style="font-size: 5em; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">${seedling.emoji}</div>
+                    </div>
+                    <h2 class="product-name">Steckling #${seedling.id}</h2>
+                    <p class="product-strain">${seedling.strain} • THC: ${seedling.thc}</p>
+                    <div class="product-price">${seedling.price.toFixed(2)} €</div>
+                    <button class="add-to-cart" id="btn-${seedling.id}" onclick="addToCart(${seedling.id})">
+                        In den Warenkorb
+                    </button>
+                </div>
+            `).join('');
         }
 
         // Zum Warenkorb hinzufügen
-        function addToCart(productId, name, price) {
-            const qty = quantities[productId];
+        function addToCart(id) {
+            const seedling = seedlings.find(s => s.id === id);
             
-            if (cart[productId]) {
-                cart[productId].qty += qty;
-            } else {
-                cart[productId] = { name, price, qty };
+            if (cart[id]) {
+                alert('Dieser Steckling ist bereits im Warenkorb!');
+                return;
             }
             
-            // Menge zurücksetzen
-            quantities[productId] = 1;
-            document.getElementById('qty-' + productId).textContent = 1;
+            cart[id] = { ...seedling, qty: 1 };
+            
+            // Button aktualisieren
+            const btn = document.getElementById(`btn-${id}`);
+            btn.textContent = '✓ Im Warenkorb';
+            btn.disabled = true;
+            
+            // Karte als verkauft markieren
+            document.getElementById(`card-${id}`).classList.add('sold-out');
             
             updateCart();
-            
-            // Animation
-            const btn = event.target;
-            btn.textContent = '✓ Hinzugefügt!';
-            setTimeout(() => {
-                btn.textContent = 'In den Warenkorb';
-            }, 1500);
         }
 
         // Warenkorb aktualisieren
@@ -518,15 +463,10 @@
                 html += `
                     <div class="cart-item">
                         <div class="cart-item-info">
-                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-name">Steckling #${item.id} - ${item.strain}</div>
                             <div class="cart-item-price">${item.price.toFixed(2)} € × ${item.qty} = ${itemTotal.toFixed(2)} €</div>
                         </div>
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="updateItemQty('${id}', -1)">−</button>
-                            <span>${item.qty}</span>
-                            <button class="quantity-btn" onclick="updateItemQty('${id}', 1)">+</button>
-                            <button class="remove-btn" onclick="removeItem('${id}')">🗑️</button>
-                        </div>
+                        <button class="remove-btn" onclick="removeItem(${id})">🗑️</button>
                     </div>
                 `;
             }
@@ -540,17 +480,18 @@
             cartTotal.textContent = total.toFixed(2).replace('.', ',') + ' €';
         }
 
-        // Item-Menge im Warenkorb ändern
-        function updateItemQty(productId, change) {
-            if (cart[productId]) {
-                cart[productId].qty = Math.max(1, cart[productId].qty + change);
-                updateCart();
-            }
-        }
-
         // Item entfernen
-        function removeItem(productId) {
-            delete cart[productId];
+        function removeItem(id) {
+            delete cart[id];
+            
+            // Button zurücksetzen
+            const btn = document.getElementById(`btn-${id}`);
+            btn.textContent = 'In den Warenkorb';
+            btn.disabled = false;
+            
+            // Karte zurücksetzen
+            document.getElementById(`card-${id}`).classList.remove('sold-out');
+            
             updateCart();
         }
 
@@ -572,8 +513,8 @@
             
             for (let id in cart) {
                 const item = cart[id];
-                message += `${item.name}: ${item.qty} × ${item.price.toFixed(2)} € = ${(item.price * item.qty).toFixed(2)} €\n`;
-                total += item.price * item.qty;
+                message += `Steckling #${item.id}: ${item.strain} - ${item.price.toFixed(2)} €\n`;
+                total += item.price;
             }
             
             message += `\nGesamt: ${total.toFixed(2)} €`;
@@ -589,6 +530,9 @@
                 toggleCart();
             }
         });
+
+        // Initial rendern
+        renderProducts();
     </script>
 </body>
 </html>
