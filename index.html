@@ -14,568 +14,579 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
-            color: #fff;
             min-height: 100vh;
-        }
-        
-        header {
-            background: rgba(0,0,0,0.3);
-            padding: 20px;
-            text-align: center;
-            border-bottom: 3px solid #4CAF50;
-        }
-        
-        header h1 {
-            font-size: 2.5em;
-            color: #4CAF50;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        header p {
-            margin-top: 10px;
-            font-size: 1.2em;
-            color: #ccc;
+            color: #fff;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
         }
         
-        .intro {
+        header {
             text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .intro h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #4CAF50;
-        }
-        
-        .intro p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            color: #ddd;
-        }
-        
-        .strains {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .strain-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            border: 2px solid #4CAF50;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .strain-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
-        }
-        
-        .strain-card h3 {
-            color: #4CAF50;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
-        
-        .strain-type {
-            display: inline-block;
-            background: #4CAF50;
-            color: #000;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        
-        .strain-card p {
-            color: #ccc;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-        
-        .price {
-            font-size: 1.8em;
-            color: #FFD700;
-            font-weight: bold;
-        }
-        
-        .order-section {
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            padding: 40px;
-            margin: 50px auto;
-            max-width: 800px;
-        }
-        
-        .order-section h2 {
-            color: #4CAF50;
-            text-align: center;
+            padding: 40px 0;
+            border-bottom: 3px solid #4a9c5d;
             margin-bottom: 30px;
         }
         
-        .form-group {
-            margin-bottom: 20px;
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #ddd;
+        .subtitle {
+            font-size: 1.2em;
+            color: #90d4a0;
+        }
+        
+        /* Warenkorb-Icon */
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4a9c5d;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .cart-count {
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+        
+        /* Warenkorb-Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cart-content {
+            background: #2d5a3d;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #4a9c5d;
+            padding-bottom: 10px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #4a9c5d;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-name {
             font-weight: bold;
         }
         
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #4CAF50;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            font-size: 1em;
+        .cart-item-price {
+            color: #90d4a0;
         }
         
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #FFD700;
-        }
-        
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .strain-select {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .strain-checkbox {
+        .quantity-controls {
             display: flex;
             align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            background: #4a9c5d;
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        
+        .quantity-btn:hover {
+            background: #5ab76e;
+        }
+        
+        .remove-btn {
+            background: #ff4444;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .cart-total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #4a9c5d;
+            font-size: 1.5em;
+            text-align: right;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4a9c5d;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .checkout-btn:hover {
+            background: #5ab76e;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        
+        /* Produkte */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .product-card {
             background: rgba(255,255,255,0.1);
-            padding: 10px;
-            border-radius: 8px;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #4a9c5d;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .product-name {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #90d4a0;
+        }
+        
+        .product-desc {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+        
+        .product-features li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #90d4a0;
+        }
+        
+        .product-price {
+            font-size: 1.8em;
+            color: #90d4a0;
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 15px;
+            background: #4a9c5d;
+            border: none;
+            color: white;
+            font-size: 1.1em;
+            border-radius: 10px;
             cursor: pointer;
             transition: background 0.3s;
         }
         
-        .strain-checkbox:hover {
-            background: rgba(76, 175, 80, 0.3);
+        .add-to-cart:hover {
+            background: #5ab76e;
         }
         
-        .strain-checkbox input {
-            margin-right: 10px;
-            width: auto;
-        }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-            color: #fff;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2em;
-            border-radius: 30px;
-            cursor: pointer;
-            display: block;
-            margin: 30px auto 0;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
-        }
-        
-        .contact {
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            margin-top: 50px;
-        }
-        
-        .contact h2 {
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-        
-        .contact-info {
+        .quantity-selector {
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 20px;
+            gap: 15px;
+            margin-bottom: 15px;
         }
         
-        .contact-item {
-            color: #ddd;
+        .qty-btn {
+            background: #4a9c5d;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
         }
         
-        .contact-item strong {
-            color: #4CAF50;
-            display: block;
-            margin-bottom: 5px;
+        .qty-display {
+            font-size: 1.5em;
+            min-width: 50px;
+            text-align: center;
         }
         
         footer {
             text-align: center;
-            padding: 30px;
-            background: rgba(0,0,0,0.5);
+            padding: 40px 0;
             margin-top: 50px;
-            color: #888;
+            border-top: 3px solid #4a9c5d;
         }
         
         .disclaimer {
-            background: rgba(255,193,7,0.2);
-            border: 1px solid #FFC107;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 30px auto;
-            max-width: 800px;
-            text-align: center;
-            color: #FFC107;
-        }
-        
-        .badge {
-            display: inline-block;
-            background: #FF5722;
-            color: #fff;
-            padding: 3px 10px;
-            border-radius: 10px;
-            font-size: 0.75em;
-            margin-left: 5px;
-        }
-        
-        .success-message {
-            display: none;
-            background: rgba(76, 175, 80, 0.3);
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
+            font-size: 0.9em;
+            color: #90d4a0;
             margin-top: 20px;
-            color: #4CAF50;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🌿 Hanfstecklinge Shop</h1>
-        <p>Premium US-Genetik - Gesunde Stecklinge für deinen Anbau</p>
-    </header>
-    
-    <div class="container">
-        <section class="intro">
-            <h2>Willkommen bei uns!</h2>
-            <p>Wir bieten dir handverlesene, gesunde Hanfstecklinge aus den besten US-Genetiken. 
-            Alle Stecklinge werden mit Liebe und Sorgfalt aufgezogen und sind bereit für dein Grow-Projekt. 
-            Diskreter Versand nach Deutschland, Österreich und EU-weit.</p>
-        </section>
-        
-        <div class="disclaimer">
-            ⚠️ Hinweis: Der Anbau von Hanf ist in vielen Ländern nur mit entsprechender Lizenz erlaubt. 
-            Bitte informiere dich über die geltenden Gesetze in deinem Land.
-        </div>
-        
-        <section class="shipping-info" style="background: rgba(76, 175, 80, 0.1); border: 2px solid #4CAF50; border-radius: 15px; padding: 30px; margin: 30px auto; max-width: 800px; text-align: center;">
-            <h2 style="color: #4CAF50; margin-bottom: 20px;">📦 Versandbedingungen</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                <div style="color: #ddd;">
-                    <strong style="color: #FFD700; display: block; font-size: 1.3em; margin-bottom: 10px;">Mindestbestellmenge</strong>
-                    3 Stecklinge
-                </div>
-                <div style="color: #ddd;">
-                    <strong style="color: #FFD700; display: block; font-size: 1.3em; margin-bottom: 10px;">Versand</strong>
-                    Diskret mit Tracking
-                </div>
-                <div style="color: #ddd;">
-                    <strong style="color: #FFD700; display: block; font-size: 1.3em; margin-bottom: 10px;">Liefergebiet</strong>
-                    Deutschland, Österreich, EU
-                </div>
-            </div>
-        </section>
-        
-        <section class="strains">
-            <!-- Indica Sorten -->
-            <div class="strain-card">
-                <h3>OG Kush</h3>
-                <span class="strain-type">Indica-dominant</span>
-                <p>Der klassische OG Kush aus Kalifornien. Starkes Aroma mit erdigen und zitronigen Noten. 
-                Sehr robust und pflegeleicht. Blütezeit: 8-9 Wochen.</p>
-                <div class="price">15 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Girl Scout Cookies <span class="badge">Bestseller</span></h3>
-                <span class="strain-type">Indica-dominant</span>
-                <p>Süßer, erdiger Geschmack mit Minznoten. 
-                Premium US-Genetik mit hohem THC-Gehalt. Kompakte, harzige Buds. Blütezeit: 9-10 Wochen.</p>
-                <div class="price">20 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Granddaddy Purple</h3>
-                <span class="strain-type">Indica</span>
-                <p>Berühmt für ihre tiefviolette Farbe und süßen Beerengeschmack. 
-                Sehr entspannende Wirkung. Hoher Ertrag. Blütezeit: 8-9 Wochen.</p>
-                <div class="price">18 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Northern Lights</h3>
-                <span class="strain-type">Indica</span>
-                <p>Klassische Indica, bekannt für ihre Robustheit und kurze Blütezeit. 
-                Erdiger Geschmack, sehr resistent. Ideal für Anfänger. Blütezeit: 7-8 Wochen.</p>
-                <div class="price">14 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Bubba Kush</h3>
-                <span class="strain-type">Indica</span>
-                <p>Schwere Indica mit Schokoladen- und Kaffeearomen. 
-                Sehr entspannend, perfekt für den Abend. Kompakte Pflanze. Blütezeit: 8-9 Wochen.</p>
-                <div class="price">16 €</div>
-            </div>
-            
-            <!-- Sativa Sorten -->
-            <div class="strain-card">
-                <h3>Blue Dream</h3>
-                <span class="strain-type">Sativa-dominant</span>
-                <p>Beliebte Sativa mit süßem Beerengeschmack. 
-                Ausgewogene Wirkung, perfekt für den Tag. Sehr resistent gegen Schimmel. Blütezeit: 9-10 Wochen.</p>
-                <div class="price">16 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Sour Diesel <span class="badge">Bestseller</span></h3>
-                <span class="strain-type">Sativa-dominant</span>
-                <p>Legendäre East-Coast-Sativa mit charakteristischem Diesel-Aroma. 
-                Energiegeladene Wirkung, ideal für kreative Projekte. Blütezeit: 10-11 Wochen.</p>
-                <div class="price">17 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Jack Herer</h3>
-                <span class="strain-type">Sativa-dominant</span>
-                <p>Namensgebende Sorte nach dem Cannabis-Aktivisten. 
-                Würziger, pfeffriger Geschmack. Ausgewogene, klare Wirkung. Blütezeit: 8-10 Wochen.</p>
-                <div class="price">17 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Green Crack</h3>
-                <span class="strain-type">Sativa</span>
-                <p>Intensive, energiegeladene Sativa mit süßem Mango-Aroma. 
-                Perfekt für produktive Tage. Schnell wachsend. Blütezeit: 7-9 Wochen.</p>
-                <div class="price">15 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Strawberry Cough</h3>
-                <span class="strain-type">Sativa</span>
-                <p>Süße Erdbeeraromen mit sanfter, aufmunternder Wirkung. 
-                Sehr beliebt bei Social Smokers. Blütezeit: 9-10 Wochen.</p>
-                <div class="price">16 €</div>
-            </div>
-            
-            <!-- Hybrid Sorten -->
-            <div class="strain-card">
-                <h3>Gorilla Glue #4 <span class="badge">Top</span></h3>
-                <span class="strain-type">Hybrid</span>
-                <p>Bekannt für ihre extrem harzigen Buds und starke Wirkung. 
-                Intensiver Duft nach Kiefer und Schokolade. Hoher Ertrag. Blütezeit: 8-9 Wochen.</p>
-                <div class="price">18 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Wedding Cake</h3>
-                <span class="strain-type">Hybrid</span>
-                <p>Süßer, vanilliger Geschmack wie der Name vermuten lässt. 
-                Sehr potent, ausgewogene Wirkung. Beliebt bei Connoisseuren. Blütezeit: 8-9 Wochen.</p>
-                <div class="price">19 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Runtz</h3>
-                <span class="strain-type">Hybrid</span>
-                <p>Trendige Sorte mit süßem, fruchtigem Aroma wie die Süßigkeit. 
-                Sehr harzig und potent. Kalifornische Top-Genetik. Blütezeit: 8-9 Wochen.</p>
-                <div class="price">21 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Zkittlez</h3>
-                <span class="strain-type">Indica-Hybrid</span>
-                <p>Intensiver, süßer Fruchtaroma wie bunte Süßigkeiten. 
-                Entspannend ohne müde zu machen. Cup-Gewinner. Blütezeit: 8-9 Wochen.</p>
-                <div class="price">18 €</div>
-            </div>
-            
-            <div class="strain-card">
-                <h3>Gelato</h3>
-                <span class="strain-type">Hybrid</span>
-                <p>Cremiger, süßer Geschmack mit Beerernoten. 
-                Ausgewogene Wirkung zwischen körperlich und mental. Sehr beliebt. Blütezeit: 8-9 Wochen.</p>
-                <div class="price">19 €</div>
-            </div>
-        </section>
-        
-        <section class="order-section">
-            <h2>🛒 Bestellformular</h2>
-            <form id="orderForm" action="https://formsubmit.co/muttihauweg@gmail.com" method="POST">
-                <input type="hidden" name="_subject" value="Neue Hanfstecklinge Bestellung!">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://deine-domain.de/danke.html">
-                
-                <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="Dein vollständiger Name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">E-Mail *</label>
-                    <input type="email" id="email" name="email" required placeholder="deine@email.de">
-                </div>
-                
-                <div class="form-group">
-                    <label>Sorten auswählen (Mindestens 3 Stecklinge) *</label>
-                    <div class="strain-select">
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="OG Kush"> OG Kush (15€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Girl Scout Cookies"> Girl Scout Cookies (20€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Granddaddy Purple"> Granddaddy Purple (18€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Northern Lights"> Northern Lights (14€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Bubba Kush"> Bubba Kush (16€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Blue Dream"> Blue Dream (16€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Sour Diesel"> Sour Diesel (17€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Jack Herer"> Jack Herer (17€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Green Crack"> Green Crack (15€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Strawberry Cough"> Strawberry Cough (16€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Gorilla Glue #4"> Gorilla Glue #4 (18€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Wedding Cake"> Wedding Cake (19€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Runtz"> Runtz (21€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Zkittlez"> Zkittlez (18€)
-                        </label>
-                        <label class="strain-checkbox">
-                            <input type="checkbox" name="sorten[]" value="Gelato"> Gelato (19€)
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="anzahl">Gesamtanzahl Stecklinge *</label>
-                    <input type="number" id="anzahl" name="anzahl" min="3" required placeholder="Mindestens 3">
-                </div>
-                
-                <div class="form-group">
-                    <label for="adresse">Lieferadresse *</label>
-                    <textarea id="adresse" name="adresse" required placeholder="Straße, Hausnummer&#10;PLZ Ort&#10;Land"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="nachricht">Zusätzliche Nachricht (optional)</label>
-                    <textarea id="nachricht" name="nachricht" placeholder="Fragen oder besondere Wünsche..."></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">✉️ Bestellung absenden</button>
-            </form>
-            
-            <div id="successMessage" class="success-message">
-                ✅ Deine Bestellung wurde erfolgreich gesendet! Wir melden uns bei dir.
-            </div>
-        </section>
-        
-        
-        <section class="contact">
-            <h2>📞 Kontakt</h2>
-            <p>Bei Fragen erreichst du uns auch direkt:</p>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <strong>Email</strong>
-                    muttihauweg@gmail.com
-                </div>
-                <div class="contact-item">
-                    <strong>Telegram</strong>
-                    @hanfstecklinge
-                </div>
-                <div class="contact-item">
-                    <strong>Versand</strong>
-                    Diskret & Tracking
-                </div>
-            </div>
-        </section>
+    <!-- Warenkorb-Icon -->
+    <div class="cart-icon" onclick="toggleCart()">
+        🛒 Warenkorb <span class="cart-count" id="cartCount">0</span>
     </div>
     
-    <footer>
-        <p>&copy; 2026 Hanfstecklinge Shop | Alle Rechte vorbehalten</p>
-        <p style="margin-top: 10px; font-size: 0.9em;">
-            Diese Seite dient ausschließlich zu Informationszwecken. 
-            Bitte beachte die gesetzlichen Bestimmungen in deinem Land.
-        </p>
-    </footer>
-    
-    
+    <!-- Warenkorb-Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>🛒 Dein Warenkorb</h2>
+                <button class="close-cart" onclick="toggleCart()">✕</button>
+            </div>
+            <div id="cartItems">
+                <!-- Warenkorb-Items werden hier eingefügt -->
+            </div>
+            <div class="cart-total">
+                Gesamt: <span id="cartTotal">0,00 €</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Zur Kasse →</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>🌿 Hanfstecklinge Shop</h1>
+            <p class="subtitle">Premium US-Genetik - Direkt aus Kalifornien</p>
+        </header>
+
+        <div class="products-grid">
+            <!-- Gorilla Glue #4 -->
+            <div class="product-card">
+                <h2 class="product-name">🦍 Gorilla Glue #4</h2>
+                <p class="product-desc">Die legendäre US-Sorte mit extrem hohem THC-Gehalt und klebrigen Harzproduktion.</p>
+                <ul class="product-features">
+                    <li>THC: 25-30%</li>
+                    <li>Blütezeit: 8-9 Wochen</li>
+                    <li>Ertrag: Hoch</li>
+                    <li>Wirkung: Stark entspannend</li>
+                </ul>
+                <div class="product-price">15,00 € / Steckling</div>
+                <div class="quantity-selector">
+                    <button class="qty-btn" onclick="changeQty('gg4', -1)">−</button>
+                    <span class="qty-display" id="qty-gg4">1</span>
+                    <button class="qty-btn" onclick="changeQty('gg4', 1)">+</button>
+                </div>
+                <button class="add-to-cart" onclick="addToCart('gg4', 'Gorilla Glue #4', 15)">In den Warenkorb</button>
+            </div>
+
+            <!-- Blue Dream -->
+            <div class="product-card">
+                <h2 class="product-name">💙 Blue Dream</h2>
+                <p class="product-desc">Beliebte Westküsten-Sorte mit süßem Beerengeschmack und ausgewogener Wirkung.</p>
+                <ul class="product-features">
+                    <li>THC: 18-24%</li>
+                    <li>Blütezeit: 9-10 Wochen</li>
+                    <li>Ertrag: Sehr hoch</li>
+                    <li>Wirkung: Kreativ & euphorisch</li>
+                </ul>
+                <div class="product-price">12,00 € / Steckling</div>
+                <div class="quantity-selector">
+                    <button class="qty-btn" onclick="changeQty('bd', -1)">−</button>
+                    <span class="qty-display" id="qty-bd">1</span>
+                    <button class="qty-btn" onclick="changeQty('bd', 1)">+</button>
+                </div>
+                <button class="add-to-cart" onclick="addToCart('bd', 'Blue Dream', 12)">In den Warenkorb</button>
+            </div>
+
+            <!-- OG Kush -->
+            <div class="product-card">
+                <h2 class="product-name">🌲 OG Kush</h2>
+                <p class="product-desc">Klassische Kalifornische Sorte mit erdigen Aromen und kräftiger Wirkung.</p>
+                <ul class="product-features">
+                    <li>THC: 20-26%</li>
+                    <li>Blütezeit: 8 Wochen</li>
+                    <li>Ertrag: Mittel-Hoch</li>
+                    <li>Wirkung: Stark & langanhaltend</li>
+                </ul>
+                <div class="product-price">14,00 € / Steckling</div>
+                <div class="quantity-selector">
+                    <button class="qty-btn" onclick="changeQty('ogk', -1)">−</button>
+                    <span class="qty-display" id="qty-ogk">1</span>
+                    <button class="qty-btn" onclick="changeQty('ogk', 1)">+</button>
+                </div>
+                <button class="add-to-cart" onclick="addToCart('ogk', 'OG Kush', 14)">In den Warenkorb</button>
+            </div>
+
+            <!-- Girl Scout Cookies -->
+            <div class="product-card">
+                <h2 class="product-name">🍪 Girl Scout Cookies</h2>
+                <p class="product-desc">Preisgekrönte Sorte mit süßem, erdigen Geschmack und hohem THC-Gehalt.</p>
+                <ul class="product-features">
+                    <li>THC: 22-28%</li>
+                    <li>Blütezeit: 9-10 Wochen</li>
+                    <li>Ertrag: Hoch</li>
+                    <li>Wirkung: Euphorisch & entspannend</li>
+                </ul>
+                <div class="product-price">16,00 € / Steckling</div>
+                <div class="quantity-selector">
+                    <button class="qty-btn" onclick="changeQty('gsc', -1)">−</button>
+                    <span class="qty-display" id="qty-gsc">1</span>
+                    <button class="qty-btn" onclick="changeQty('gsc', 1)">+</button>
+                </div>
+                <button class="add-to-cart" onclick="addToCart('gsc', 'Girl Scout Cookies', 16)">In den Warenkorb</button>
+            </div>
+
+            <!-- Wedding Cake -->
+            <div class="product-card">
+                <h2 class="product-name">🎂 Wedding Cake</h2>
+                <p class="product-desc">Potente Indica-dominante Sorte mit süßem, vanilleartigem Geschmack.</p>
+                <ul class="product-features">
+                    <li>THC: 24-30%</li>
+                    <li>Blütezeit: 8-9 Wochen</li>
+                    <li>Ertrag: Sehr hoch</li>
+                    <li>Wirkung: Tiefenentspannung</li>
+                </ul>
+                <div class="product-price">17,00 € / Steckling</div>
+                <div class="quantity-selector">
+                    <button class="qty-btn" onclick="changeQty('wc', -1)">−</button>
+                    <span class="qty-display" id="qty-wc">1</span>
+                    <button class="qty-btn" onclick="changeQty('wc', 1)">+</button>
+                </div>
+                <button class="add-to-cart" onclick="addToCart('wc', 'Wedding Cake', 17)">In den Warenkorb</button>
+            </div>
+
+            <!-- Zkittlez -->
+            <div class="product-card">
+                <h2 class="product-name">🌈 Zkittlez</h2>
+                <p class="product-desc">Fruchtige Sorte mit intensivem Süßigkeiten-Aroma und entspannender Wirkung.</p>
+                <ul class="product-features">
+                    <li>THC: 19-23%</li>
+                    <li>Blütezeit: 8 Wochen</li>
+                    <li>Ertrag: Hoch</li>
+                    <li>Wirkung: Glücklich & entspannt</li>
+                </ul>
+                <div class="product-price">13,00 € / Steckling</div>
+                <div class="quantity-selector">
+                    <button class="qty-btn" onclick="changeQty('zk', -1)">−</button>
+                    <span class="qty-display" id="qty-zk">1</span>
+                    <button class="qty-btn" onclick="changeQty('zk', 1)">+</button>
+                </div>
+                <button class="add-to-cart" onclick="addToCart('zk', 'Zkittlez', 13)">In den Warenkorb</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>📧 Kontakt: info@hanfstecklinge-shop.de</p>
+            <p>📱 WhatsApp: +49 123 456789</p>
+            <p class="disclaimer">
+                ⚠️ Hinweis: Der Anbau von Hanf ist in Deutschland nur mit entsprechender Lizenz erlaubt. 
+                Diese Stecklinge sind ausschließlich für zugelassene Anbauer bestimmt.
+            </p>
+        </footer>
+    </div>
+
     <script>
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            const checkboxes = document.querySelectorAll('input[name=\"sorten[]\"]:checked');
-            const anzahl = document.getElementById('anzahl').value;
+        // Warenkorb-Daten
+        let cart = {};
+        let quantities = {
+            'gg4': 1, 'bd': 1, 'ogk': 1, 
+            'gsc': 1, 'wc': 1, 'zk': 1
+        };
+
+        // Menge ändern
+        function changeQty(productId, change) {
+            quantities[productId] = Math.max(1, quantities[productId] + change);
+            document.getElementById('qty-' + productId).textContent = quantities[productId];
+        }
+
+        // Zum Warenkorb hinzufügen
+        function addToCart(productId, name, price) {
+            const qty = quantities[productId];
             
-            if (checkboxes.length === 0) {
-                e.preventDefault();
-                alert('Bitte wähle mindestens eine Sorte aus!');
+            if (cart[productId]) {
+                cart[productId].qty += qty;
+            } else {
+                cart[productId] = { name, price, qty };
+            }
+            
+            // Menge zurücksetzen
+            quantities[productId] = 1;
+            document.getElementById('qty-' + productId).textContent = 1;
+            
+            updateCart();
+            
+            // Animation
+            const btn = event.target;
+            btn.textContent = '✓ Hinzugefügt!';
+            setTimeout(() => {
+                btn.textContent = 'In den Warenkorb';
+            }, 1500);
+        }
+
+        // Warenkorb aktualisieren
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            let total = 0;
+            let count = 0;
+            let html = '';
+            
+            for (let id in cart) {
+                const item = cart[id];
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                count += item.qty;
+                
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toFixed(2)} € × ${item.qty} = ${itemTotal.toFixed(2)} €</div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateItemQty('${id}', -1)">−</button>
+                            <span>${item.qty}</span>
+                            <button class="quantity-btn" onclick="updateItemQty('${id}', 1)">+</button>
+                            <button class="remove-btn" onclick="removeItem('${id}')">🗑️</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            if (count === 0) {
+                html = '<p style="text-align: center; padding: 20px;">Dein Warenkorb ist leer 🛒</p>';
+            }
+            
+            cartItems.innerHTML = html;
+            cartCount.textContent = count;
+            cartTotal.textContent = total.toFixed(2).replace('.', ',') + ' €';
+        }
+
+        // Item-Menge im Warenkorb ändern
+        function updateItemQty(productId, change) {
+            if (cart[productId]) {
+                cart[productId].qty = Math.max(1, cart[productId].qty + change);
+                updateCart();
+            }
+        }
+
+        // Item entfernen
+        function removeItem(productId) {
+            delete cart[productId];
+            updateCart();
+        }
+
+        // Warenkorb anzeigen/verstecken
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Zur Kasse
+        function checkout() {
+            if (Object.keys(cart).length === 0) {
+                alert('Dein Warenkorb ist leer!');
                 return;
             }
             
-            if (anzahl < 3) {
-                e.preventDefault();
-                alert('Mindestbestellmenge sind 3 Stecklinge!');
-                return;
+            let message = 'Neue Bestellung:\n\n';
+            let total = 0;
+            
+            for (let id in cart) {
+                const item = cart[id];
+                message += `${item.name}: ${item.qty} × ${item.price.toFixed(2)} € = ${(item.price * item.qty).toFixed(2)} €\n`;
+                total += item.price * item.qty;
+            }
+            
+            message += `\nGesamt: ${total.toFixed(2)} €`;
+            
+            // WhatsApp-Link erstellen
+            const whatsappUrl = `https://wa.me/49123456789?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Modal schließen bei Klick außerhalb
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleCart();
             }
         });
     </script>
