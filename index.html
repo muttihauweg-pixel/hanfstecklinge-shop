@@ -462,9 +462,9 @@
                 quantities[strain.id] = quantities[strain.id] || 1;
                 return `
                 <div class="product-card">
-                    <div class="product-image">
-                        <img src="${strain.image}" alt="${strain.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="product-image-placeholder" style="display:none">${strain.emoji}</div>
+                    <div class="product-image" style="background: linear-gradient(135deg, #2d5a3d 0%, #1a472a 100%);">
+                        <div style="font-size: 5em; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">${strain.emoji}</div>
+                        <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); padding: 5px 10px; border-radius: 5px; font-size: 0.8em;">📷 Bild folgt</div>
                     </div>
                     <h2 class="product-name">${strain.name}</h2>
                     <div class="product-thc">THC: ${strain.thc}</div>
